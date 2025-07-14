@@ -1,0 +1,1693 @@
+/* =============================================================================
+   GENERAL STYLES & RESET
+   ============================================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Body and Typography */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* Mengikuti tema warna baru Anda: gradasi ungu/pink/biru */
+    background: linear-gradient(135deg, #ded1c6 0%, #a77693 50%, #174871 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #0f2d4d; /* Warna teks terang default */
+    line-height: 1.6;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* =============================================================================
+   LAYOUT CONTAINERS
+   ============================================================================= */
+/* Main Container */
+.main-container {
+    max-width: 2000px; /* Tingkatkan nilai ini (misal dari 1400px ke 1600px atau lebih) */
+    width: calc(100% - 20px); /* Kurangi padding horizontal (misal dari 40px ke 20px) */
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-sizing: border-box;
+    color: #0f2d4d;
+}
+
+/* =============================================================================
+   HEADER STYLES
+   ============================================================================= */
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 30px;
+    position: relative; /* Untuk pseudo-elements */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: relative; /* Untuk pseudo-elements */
+    transition: all 0.3s ease;
+}
+
+.site-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative; /* Agar di atas pseudo-element */
+    z-index: 2;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.header-title {
+    font-size: 5em;
+    color: #174871; /* Warna biru tua */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    font-weight: 800; /* Lebih tebal */
+    position: relative;
+    cursor: pointer;
+    background: linear-gradient(135deg, #174871 0%, #0f2d4d 100%); /* Gradasi teks */
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+.site-branding { /* NEW: Wrapper untuk judul dan tagline */
+    text-align: center;
+    flex-grow: 1; /* Agar mengambil ruang di tengah */
+}
+
+.site-tagline { /* NEW: Gaya untuk tagline */
+    color: #be2b83; /* Warna teks yang lebih terang */
+    font-size: 1em;
+    margin-top: 5px;
+    opacity: 0.8;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #0f2d4d;
+    font-weight: 500;
+}
+
+/* Gaya untuk tombol Login/Logout di header */
+.user-profile .button.primary.small-button {
+    background: rgba(255, 255, 255, 0.2); /* Background transparan */
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Border lebih terlihat */
+    padding: 8px 16px; /* Padding lebih besar */
+    font-size: 0.9em;
+    border-radius: 8px; /* Sudut membulat */
+    color: #FFFFFF; /* Teks putih */
+    text-shadow: none;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Pastikan teks tidak wrap */
+    text-decoration: underline; /* Efek garis bawah */
+}
+
+.user-profile .button.primary.small-button:hover {
+    background: #FFFFFF; /* Latar belakang putih */
+    border-color: #174871; /* Border biru tua */
+    color: #174871; /* Teks biru tua */
+    transform: translateY(-1px); /* Sedikit efek angkat */
+    text-decoration: none; /* Hapus garis bawah saat hover */
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ded1c6 0%, #174871 100%); /* Gradasi */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    object-fit: cover; /* Pastikan gambar avatar pas */
+}
+
+/* Header Animations */
+.header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.header::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: borderGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes borderGlow {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.8; }
+}
+
+.logo::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: linear-gradient(135deg, #174871 0%, #ded1c6 50%, #a77693 100%); /* Gradasi warna */
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.logo:hover::before {
+    opacity: 1;
+}
+
+.logo:hover {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.logo:hover .site-logo {
+    filter: brightness(1.2);
+}
+
+.header-title::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ded1c6, #174871); /* Garis bawah judul */
+    transition: width 0.3s ease;
+}
+
+.header-title:hover::before {
+    width: 100%;
+}
+
+@keyframes titleGlow {
+    from { text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); filter: brightness(1); }
+    to { text-shadow: 0 4px 20px rgba(255, 255, 255, 0.3); filter: brightness(1.1); }
+}
+
+/* =============================================================================
+   FLOATING ELEMENTS FOR VISUAL ENHANCEMENT
+   ============================================================================= */
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-book {
+    position: absolute;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.1);
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-book:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+.floating-book:nth-child(2) { top: 20%; right: 15%; animation-delay: 2s; }
+.floating-book:nth-child(3) { top: 30%; right: 30%; animation-delay: 4s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.parallax-bg {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    background: radial-gradient(circle at 20% 30%, rgba(222, 209, 198, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(167, 118, 147, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(23, 72, 113, 0.05) 0%, transparent 50%);
+    animation: parallaxMove 20s ease-in-out infinite;
+    z-index: -1;
+}
+
+@keyframes parallaxMove {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+/* =============================================================================
+   NAVIGATION STYLES
+   ============================================================================= */
+/* Navigation Section (Navbar) */
+.nav-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.nav-tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-tab {
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: #174871; /* Warna biru tua (ungu) */ /* Diubah */
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-tab:hover, .nav-tab.active {
+    background: rgba(255, 255, 255, 0.9); /* Latar belakang putih */
+    border-color: #174871; /* Border biru tua */
+    color: #174871; /* Teks biru tua (ungu) */ /* Diubah */
+    transform: translateY(-1px);
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* =============================================================================
+   SEARCH BAR STYLES
+   ============================================================================= */
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.search-bar::before { /* Search Icon Enhancement */
+    content: "🔍";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+    color: #0f2d4d;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.search-input {
+    padding: 12px 18px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    color: #174871;
+    width: 250px;
+    font-size: 1em;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    padding-right: 45px; /* Make room for the search icon */
+}
+
+.search-input::placeholder {
+    color: rgba(23, 72, 113, 0.7);
+    font-weight: 400;
+}
+
+.search-input:focus {
+    border-color: #a77693;
+    box-shadow: 0 0 0 3px rgba(167, 118, 147, 0.3), 0 4px 15px rgba(0, 0, 0, 0.2);
+    outline: none;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Search Suggestions */
+.search-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    z-index: 100;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    display: none;
+    color: #333;
+    backdrop-filter: blur(10px);
+}
+
+.search-suggestions div {
+    padding: 12px 18px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+}
+
+.search-suggestions div:last-child {
+    border-bottom: none;
+}
+
+.search-suggestions div:hover {
+    background-color: rgba(222, 209, 198, 0.2); /* Warna hover disesuaikan */
+}
+
+/* =============================================================================
+   BOOK CAROUSEL STYLES
+   ============================================================================= */
+.book-carousel {
+    margin-bottom: 40px;
+}
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(5px);
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.carousel-track {
+    display: flex;
+    gap: 15px;
+    transition: transform 0.5s ease;
+    align-items: center;
+}
+
+.carousel-book {
+    min-width: 120px;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.carousel-book:hover {
+    transform: translateY(-10px) scale(1.05);
+}
+
+.carousel-book img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: #174871;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.carousel-nav:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #174871;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav.prev {
+    left: 10px;
+}
+
+.carousel-nav.next {
+    right: 10px;
+}
+
+/* =============================================================================
+   CONTENT GRID & CARDS
+   ============================================================================= */
+/* Content Grid (for Best Book and Popular sections) */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.section-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+    padding: 20px; /* Padding dikurangi dari 25px menjadi 20px */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px; /* Margin bawah dikurangi */
+}
+
+.section-title {
+    font-size: 1.3em; /* Ukuran judul section dikecilkan dari 1.5em */
+    color: #174871; /* Warna biru tua */
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.view-all {
+    color: #ded1c6; /* Warna disesuaikan */
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.view-all:hover {
+    color: #174871; /* Warna disesuaikan */
+}
+
+/* =============================================================================
+   BOOK GRIDS & ITEMS (Popular Section)
+   ============================================================================= */
+.book-grid {
+    display: grid;
+    /* Menyesuaikan minmax agar lebih besar dan memungkinkan 3 kolom jika ruang cukup */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+    gap: 15px;
+}
+
+.book-item {
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.book-item:hover {
+    transform: translateY(-5px);
+}
+
+.book-cover1 img {
+    width: 100%; /* Tetap 100% dari wadah */
+    height: 100%; /* Tetap 100% dari wadah */
+    object-fit: cover; /* Pastikan gambar mengisi seluruh area wadah, potong jika perlu */
+    display: block; /* Hindari ruang kosong di bawah gambar */
+}
+
+/* Penyesuaian ukuran dan penempatan di tengah untuk .book-cover1 */
+.book-cover1 {
+    width: 150px; /* Diperkecil dari 180px menjadi 150px */
+    height: 200px; /* Diperkecil dari 160px menjadi 200px (agar rasio buku lebih natural) */
+    margin: 0 auto 10px auto; /* Ditambahkan "auto" di kiri dan kanan untuk menengahkan wadah, dan margin bawah */
+    overflow: hidden; /* Penting agar gambar yang object-fit: cover tidak meluber */
+    border-radius: 10px; /* Contoh radius */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    /* Jika Anda ingin menambahkan efek visual saat tidak di-hover, seperti border ringan */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease; /* Transisi untuk efek hover jika ada */
+}
+
+/* Jika .book-item adalah container untuk .book-cover1 dan teks */
+/* Pastikan .book-item memiliki text-align: center agar isinya ikut rata tengah */
+.book-item {
+    text-align: center; /* PENTING: Untuk menengahkan .book-cover1 dan teks di dalamnya */
+    /* ... gaya book-item lainnya ... */
+}
+
+
+.book-title {
+    font-size: 0.85em; /* Sedikit diperkecil agar proporsional dengan gambar yang lebih kecil */
+    color: #FFFFFF; /* Ganti ke putih agar kontras dengan latar belakang hijau/glassmorphism */
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 600;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Tambahkan shadow untuk visibilitas */
+}
+
+.book-author {
+    font-size: 0.75em; /* Sedikit diperkecil agar proporsional */
+    color: #C8E6C9; /* Hijau terang dari tema glassmorphism Anda */
+    margin: 2px 0 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* Tambahkan shadow untuk visibilitas */
+}
+
+/* Anda juga perlu memastikan .book-grid Anda mengizinkan penengahan */
+.book-grid {
+    display: grid;
+    /* Ini akan membuat item grid berada di tengah jika ada ruang kosong */
+    justify-content: center; /* PENTING: Untuk menengahkan seluruh grid jika ada sisa ruang */
+    /* grid-template-columns ini akan menyesuaikan jumlah kolom berdasarkan lebar wadah */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Min-width sesuai lebar .book-cover1 */
+    gap: 20px; /* Jarak antar item */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =============================================================================
+   FEATURED BOOK STYLES
+   ============================================================================= */
+.featured-book {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.featured-cover {
+    width: 150px;
+    height: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.featured-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.featured-info {
+    flex: 1;
+}
+
+.featured-title {
+    font-size: 1.3em;
+    color: #174871;
+    margin: 0 0 10px 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.featured-author {
+    color: #a77693;
+    margin-bottom: 10px;
+}
+
+.star-rating {
+    color: #ffd700;
+    margin-bottom: 15px;
+}
+
+.featured-description {
+    color: #0f2d4d;
+    font-size: 0.9em;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    background: linear-gradient(135deg, #ded1c6 0%, #174871 100%);
+    color: #174871;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.read-more:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* =============================================================================
+   FORM STYLES
+   ============================================================================= */
+body.auth-page-body {
+    background: linear-gradient(135deg, #ded1c6 0%, #a77693 50%, #174871 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.auth-form, .add-review-form, .edit-review-form {
+    max-width: 500px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 40px;
+    color: #0f2d4d;
+}
+
+.auth-form h1, .add-review-form h1, .edit-review-form h1 {
+    color: #174871;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2em;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    color: #0f2d4d;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group input[type="password"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    color: #174871;
+    font-size: 1em;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #a77693;
+    box-shadow: 0 0 0 3px rgba(167, 118, 147, 0.3);
+    outline: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* File Input Styling */
+.form-group input[type="file"] {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+    position: absolute;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.form-group label.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #174871;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-weight: normal;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+.form-group label.custom-file-upload:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #174871;
+    transform: translateY(-1px);
+}
+
+.file-name-display {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+
+/* Password Input with Toggle */
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-input-wrapper input {
+    padding-right: 70px;
+}
+
+
+
+.form-actions {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* =============================================================================
+   BUTTONS
+   ============================================================================= */
+.button,
+.auth-form .button,
+.add-review-form .button.form-submit-button,
+.edit-review-form .button.form-submit-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #1406af;
+    padding: 12px 30px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.button:hover,
+.auth-form .button:hover,
+.add-review-form .button.form-submit-button:hover,
+.edit-review-form .button.form-submit-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #174871;
+    color: #174871;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.button.primary {
+    background: linear-gradient(135deg, #ded1c6 0%, #174871 100%);
+    border: none;
+}
+
+.button.primary:hover {
+    background: linear-gradient(135deg, #174871 0%, #a77693 100%);
+}
+
+.button.primary.small-button {
+    padding: 8px 16px;
+    font-size: 0.9em;
+}
+
+.add-review-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #174871;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.add-review-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #174871;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: #174871;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #174871;
+    transform: translateY(-1px);
+}
+
+.action-btn.delete {
+    background: rgba(244, 67, 54, 0.3) !important;
+    border-color: rgba(244, 67, 54, 0.5) !important;
+    color: #ffffff;
+}
+
+.action-btn.delete:hover {
+    background: rgba(244, 67, 54, 0.5) !important;
+    border-color: rgba(244, 67, 54, 0.7) !important;
+    color: #ffffff;
+}
+
+.icon-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+/* =============================================================================
+   ALL REVIEWS & MY REVIEWS SECTIONS
+   ============================================================================= */
+/* All Reviews Section */
+.all-reviews-full-list-section {
+    margin-top: 40px;
+}
+
+.all-reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Disesuaikan untuk 3 kolom */
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.all-review-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    padding: 20px; /* Dikurangi dari 25px */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    color: #0f2d4d; /* Warna teks disesuaikan */
+    min-height: 280px; /* Tinggi minimum disesuaikan */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
+    color: inherit;
+}
+
+.all-review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.card-header-main {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.card-logo-placeholder {
+    width: 60px; /* Diperkecil dari 80px */
+    height: 90px; /* Diperkecil dari 100px */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.1); /* Fallback background jika gambar tidak ada */
+}
+
+.card-logo-placeholder img.card-cover-image-small {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Menggunakan contain agar gambar tidak terpotong */
+    border-radius: 8px;
+}
+
+.card-title-author {
+    flex: 1;
+}
+
+.card-book-title {
+    font-size: 1.1em; /* Disesuaikan */
+    font-weight: 600;
+    color: #174871; /* Warna disesuaikan */
+    margin: 0 0 5px 0;
+    line-height: 1.3;
+}
+
+.card-book-author {
+    font-size: 0.85em; /* Disesuaikan */
+    color: #a77693; /* Warna disesuaikan */
+    margin: 0;
+}
+
+.card-rating-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    color: #0f2d4d; /* Warna disesuaikan */
+}
+
+.card-stars {
+    color: #ffd700;
+    font-size: 1.1em;
+}
+
+.card-username {
+    font-weight: 500;
+    color: #174871; /* Warna disesuaikan */
+}
+
+.card-date {
+    font-size: 0.8em;
+    color: #a77693; /* Warna disesuaikan */
+}
+
+.card-review-text {
+    color: #0f2d4d; /* Warna disesuaikan */
+    line-height: 1.6;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.card-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.card-genre-tag {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 4px 10px;
+    font-size: 0.75em;
+    color: rgba(15, 45, 77, 0.7); /* Warna disesuaikan */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.page-link {
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #0f2d4d; /* Warna disesuaikan */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.page-link:hover, .page-link.active {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #a77693; /* Warna disesuaikan */
+    color: #174871; /* Warna disesuaikan */
+}
+
+/* Copyright Footer (di luar main-container) */
+.footer-copyright {
+    text-align: center;
+    color: rgba(15, 45, 77, 0.7); /* Warna disesuaikan */
+    font-size: 0.85em;
+    margin-top: 30px; /* Jarak dari main-container */
+    padding-bottom: 20px; /* Padding bawah */
+}
+
+
+/* My Reviews Page Specific Styles (dashboard.php) */
+/* Header untuk halaman My Reviews */
+.header .user-name {
+    color: white;
+    font-weight: 500;
+}
+
+/* Nav tabs for My Reviews */
+.nav-tabs {
+    display: flex;
+    padding: 20px 30px;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.nav-tabs .nav-tab {
+    background: rgba(255, 255, 255, 0.1);
+    color: #174871; /* Warna biru tua */ /* Diubah */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-tabs .nav-tab:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.nav-tabs .nav-tab.active {
+    background: rgba(255, 255, 255, 0.3); /* Sedikit lebih solid saat aktif */
+    color: #174871;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: #174871; /* Warna disesuaikan */
+}
+
+/* Search and Filter Container for My Reviews */
+.search-container {
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.search-box {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+}
+
+.search-container .search-input { /* Spesifik untuk search input di dashboard */
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #174871; /* Warna disesuaikan */
+    font-size: 16px;
+    backdrop-filter: blur(5px);
+    box-sizing: border-box;
+}
+
+.search-container .search-input::placeholder {
+    color: rgba(23, 72, 113, 0.7); /* Warna disesuaikan */
+}
+
+.search-container .search-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.filter-dropdown {
+    background: rgba(255, 255, 255, 0.2);
+    color: #174871; /* Warna disesuaikan */
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+}
+
+/* Content area for My Reviews */
+.content {
+    padding: 30px;
+}
+
+.reviews-grid { /* Menggunakan nama ini untuk grid ulasan pribadi */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Disesuaikan untuk 3 kolom di tablet yang lebih kecil */
+    gap: 10px; /* Dikurangi dari 25px */
+}
+
+.review-card { /* Kartu ulasan pribadi, mirip all-review-card */
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 20px 20px 0px; /* Dikurangi dari 20px */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Diperbesar dari 0 8px 25px */
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px; /* Tinggi minimum disesuaikan dari 320px */
+    text-decoration: none;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.book-info {
+    display: flex;
+    gap: 12px; /* Dikurangi dari 15px */
+    margin-bottom: 12px; /* Dikurangi dari 15px */
+    align-items: center;
+}
+
+.book-cover img { /* Gambar cover di My Reviews */
+    width: 50px; /* Dikurangi dari 60px */
+    height: 75px; /* Dikurangi dari 80px */
+    object-fit: contain; /* Menggunakan contain agar gambar tidak terpotong */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    background-color: rgba(255, 255, 255, 0.1); /* Latar belakang untuk contain */
+}
+
+.book-details h3 {
+    color: white;
+    margin-bottom: 4px; /* Dikurangi dari 5px */
+    font-size: 1.1em; /* Ukuran font lebih kecil */
+    font-weight: 600;
+}
+
+.book-details p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8em; /* Ukuran font lebih kecil */
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Dikurangi dari 5px */
+    margin: 12px 0; /* Dikurangi dari 15px */
+    font-size: 0.85em; /* Ukuran font lebih kecil */
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.stars {
+    display: flex;
+    gap: 1px; /* Dikurangi dari 2px */
+}
+
+.star {
+    color: #ffd700;
+    font-size: 1em; /* Dikurangi dari 1.1em */
+}
+
+.star.empty {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.review-text {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5; /* Dikurangi dari 1.6 */
+    margin-bottom: 12px; /* Dikurangi dari 15px */
+    flex-grow: 1;
+}
+
+.review-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8em; /* Dikurangi dari 14px */
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: auto;
+}
+
+.review-actions {
+    display: flex;
+    gap: 6px; /* Dikurangi dari 10px */
+}
+
+a{
+    text-decoration: none;
+}
+.action-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 6px 12px; /* Dikurangi dari 8px 16px */
+    border-radius: 6px; /* Dikurangi dari 8px */
+    cursor: pointer;
+    font-size: 0.8em; /* Dikurangi dari 0.9em */
+    transition: all 0.3s ease;
+    text-decoration: underline;
+    display: inline-block;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #FFFFFF;
+    transform: translateY(-1px);
+}
+
+.action-btn.delete {
+    background: rgba(244, 67, 54, 0.3) !important;
+    border-color: rgba(244, 67, 54, 0.5) !important;
+    color: #ffffff;
+}
+
+.action-btn.delete:hover {
+    background: rgba(244, 67, 54, 0.5) !important;
+    border-color: rgba(244, 67, 54, 0.7) !important;
+    color: #ffffff;
+}
+
+/* =============================================================================
+   VIEW REVIEW PAGE SPECIFIC STYLES
+   ============================================================================= */
+.review-detail-main-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr; /* Lebar fixed untuk cover, sisa untuk info */
+    gap: 40px; /* Jarak antara cover dan info */
+    align-items: flex-start;
+}
+
+.book-cover-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05); /* Background lebih transparan */
+    border-radius: 12px;
+    /*box-shadow: 0 5px 15px rgba(0,0,0,0.2);*/
+    flex-shrink: 0; /* Pastikan tidak menyusut */
+    width: 100%; /* Pastikan mengambil lebar kolom */
+    box-sizing: border-box;
+}
+
+.detail-book-cover {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.detail-book-cover.placeholder {
+    filter: grayscale(100%);
+    opacity: 0.7;
+}
+
+/* NEW: Kontainer untuk semua info teks di samping cover */
+.book-info-and-all-details {
+    display: flex;
+    flex-direction: column; /* Tumpuk bagian-bagian di dalamnya secara vertikal */
+    gap: 30px; /* Jarak antar bagian info */
+}
+
+.book-main-info {
+    /* Gaya untuk judul, penulis, rating, tombol aksi */
+}
+
+.book-main-info h2 {
+    color: #FFFFFF;
+    font-size: 2.5em;
+    margin-top: 0;
+    margin-bottom: 5px;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.book-main-info .author-detail {
+    font-size: 1.3em;
+    color: #C8E6C9;
+    margin-bottom: 10px;
+}
+
+.book-main-info .rating-detail {
+    font-size: 1.1em;
+    color: #FFD700; /* Warna bintang emas */
+    margin-bottom: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    align-items: center;
+    flex-wrap: wrap; /* Agar tombol wrap di mobile */
+}
+
+.action-buttons .button {
+    padding: 12px 25px;
+    font-size: 1em;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #66BB6A 0%, #4CAF50 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.action-buttons .button:hover {
+    background: linear-gradient(135deg, #4CAF50 0%, #388E3C 100%);
+    transform: translateY(-2px);
+}
+
+.icon-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    color: #E8F5E8;
+}
+
+.icon-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #66BB6A;
+    color: #FFFFFF;
+}
+
+/* NEW: Kontainer untuk deskripsi buku/ulasan dan detail fisik */
+.description-and-physical-info {
+    display: flex; /* Menggunakan flexbox untuk menumpuk vertikal */
+    flex-direction: column;
+    gap: 20px; /* Jarak antar bagian deskripsi dan detail fisik */
+}
+
+
+.description-section h3, .additional-info-section h3 {
+    color: #FFFFFF;
+    font-size: 1.5em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.description-section p, .additional-info-section p {
+    color: #E8F5E8;
+    font-size: 0.95em;
+    line-height: 1.7;
+    margin-bottom: 10px;
+}
+
+.additional-info-section {
+    background: rgba(255, 255, 255, 0.08); /* Background info tambahan transparan */
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.detail-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.85em;
+    color: #C8E6C9;
+}
+
+/* =============================================================================
+   MODAL STYLES (EDIT REVIEW)
+   ============================================================================= */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+    backdrop-filter: blur(5px); /* Blur effect */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.95); /* Hampir solid putih */
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    max-width: 600px; /* Diperlebar */
+    width: 90%;
+    color: #333; /* Teks gelap untuk modal */
+}
+
+.modal h2 {
+    color: #174871; /* Warna biru tua untuk judul modal */
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 2em;
+}
+
+.modal .form-group label {
+    color: #333;
+}
+
+.modal .form-group input,
+.modal .form-group textarea,
+.modal .form-group select {
+    background: #f0f0f0; /* Background input di modal */
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.modal-btn.primary {
+    background: #174871; /* Tombol biru tua */
+    color: white;
+}
+
+.modal-btn.primary:hover {
+    background: #0f2d4d;
+    transform: translateY(-1px);
+}
+
+.modal-btn.secondary {
+    background: #e0e0e0; /* Abu-abu terang */
+    color: #333;
+}
+
+.modal-btn.secondary:hover {
+    background: #d0d0d0;
+    transform: translateY(-1px);
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+@media (max-width: 1024px) {
+    .content-grid {
+        grid-template-columns: 1fr; /* Stack di tablet */
+    }
+    .featured-book {
+        flex-direction: column;
+        text-align: center;
+    }
+    .featured-cover {
+        margin-bottom: 20px;
+    }
+    /* All Reviews Grid Responsive */
+    .all-reviews-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Disesuaikan untuk 3 kolom di tablet yang lebih kecil */
+    }
+    /* My Reviews Grid Responsive */
+    .reviews-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Disesuaikan untuk 3 kolom di tablet yang lebih kecil */
+    }
+
+    /* View Review Responsive */
+    .review-detail-layout {
+        flex-direction: column; /* Stack gambar dan teks di tablet */
+        align-items: center;
+    }
+    .book-cover-column {
+        width: 100%; /* Gambar ambil lebar penuh */
+        margin-bottom: 20px;
+    }
+    .detail-book-cover { /* Atur lebar gambar agar tidak terlalu besar di tablet */
+        max-width: 250px; 
+        height: auto;
+    }
+    .book-info-column {
+        min-width: auto; /* Hapus min-width */
+        width: 100%; /* Ambil lebar penuh */
+    }
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .nav-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .nav-tabs {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .carousel-track {
+        justify-content: flex-start;
+    }
+
+    .featured-book {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .book-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 10px;
+    }
+
+    /* Forms Responsive */
+    .auth-form, .add-review-form, .edit-review-form, .modal-content {
+        padding: 25px;
+    }
+    
+    
+
+    /* My Reviews Search and Filter Responsive */
+    .search-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-box {
+        min-width: auto;
+    }
+    .filter-dropdown {
+        width: 100%;
+    }
+
+    /* All Reviews Card Responsive */
+    .all-reviews-grid {
+        grid-template-columns: 1fr;
+    }
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        margin: 5px;
+        padding: 10px;
+    }
+    .header-title {
+        font-size: 1.8em;
+    }
+    .search-input {
+        width: 150px;
+    }
+    .carousel-book {
+        min-width: 100px;
+        height: 150px;
+    }
+    
+    .auth-form, .add-review-form, .edit-review-form, .modal-content {
+        padding: 15px;
+    }
+    /* All Reviews Card Responsive */
+    .all-review-card {
+        padding: 15px;
+    }
+    /* My Reviews Card Responsive */
+    .review-card {
+        padding: 20px;
+    }
+}
